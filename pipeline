@@ -1,0 +1,24 @@
+pipeline {
+    
+    agent any
+    
+    stages {
+        stage('Git checkout'){
+            
+            steps {
+             git 'https://github.com/Maddalarajesh/nodejs-app-mss.git'
+            }
+        }
+        stage('Build') {
+      steps {
+        sh 'npm install'
+      }
+        }
+        stage('RunnodejsApp') {
+      steps {
+        sh 'chmod u+x ./scripts/runApp.sh'
+        sh './scripts/runApp.sh'
+      }
+        }
+    }
+}
